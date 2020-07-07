@@ -22,6 +22,7 @@ body {
     font-size: 20px;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+   
    padding: 20px;
    display: flex;
    flex-direction: column;
@@ -35,6 +36,10 @@ h1 {
    
 }
 
+/* ----------------------------------------------- */
+/* BOARD */
+/* ----------------------------------------------- */
+
 .board {
     background-color: BC8F8F;
     width: 800px;
@@ -42,10 +47,54 @@ h1 {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 50px 80px 10px rgba(0, 0, 0, 0.608);
-    
+    overflow: auto;
     display: flex;
-   
-  }
+    align-items: center;
+    justify-content: center;
+}
+
+.board :last-child {
+    margin-right: 0;
+}
+
+/* ----------------------------------------------- */
+/* CARDS */
+/* ----------------------------------------------- */
+
+.col {
+    margin-right: 30px;
+}
+.col :first-child{
+    margin-top: 0;
+}
+.card {
+    width: 130px;
+    height: 130px;
+    background-color: 69797E;
+    margin-top: 30px;
+    border-radius: 4px;
+    box-shadow: 0 5px 8px 1px rgba(0, 0, 0, 0.608);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transform: scale(1.15);
+}
+
+.card__lock {
+    background-color: 4A5459;
+    font-size: 0;
+}
+
+.card__open {   
+    color: rgb(22, 21, 21);
+    font-size: 250%;
+}
+
 
 
   
