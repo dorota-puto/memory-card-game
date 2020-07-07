@@ -4,19 +4,38 @@ const displayBoard = (board) => {
 
     const boardEl = document.querySelector('.board')
 
+    boardEl.innerHTML = ""
+
     let cards = [...board.getCardSet()]
 
     while (cards.length !== 0) {
-        const rowEl = document.createElement('div')
-        rowEl.classList.add('col')
+        const colEl = document.createElement('div')
+        colEl.classList.add('col')
         for (let i = 0; i < 4; i++) {
 
-            rowEl.appendChild(createCard(cards[i]))
+            colEl.appendChild(createCard(cards[i]))
         }
-        boardEl.appendChild(rowEl)
+        boardEl.appendChild(colEl)
         cards.splice(0, 4)
     }
+}
 
+const updateBoard = (board) => {
+
+    let cards = [...board.getCardSet()]
+
+    for (let i = 0; i < cards.length; i++) {
+        const cardUI = document.getElementById(`${cards[i].getId()}`)
+
+        if (cards[i].isLock()) {
+            cardUI.classList.remove('card__open')
+            cardUI.classList.add('card__lock')
+
+        } else {
+            cardUI.classList.remove('card__lock')
+            cardUI.classList.add('card__open')
+        }
+    }
 }
 
 const createCard = (card) => {
@@ -26,12 +45,12 @@ const createCard = (card) => {
 
     cardEl.classList.add('card')
     iconEl.setAttribute('name', `${card.getIcon()}`)
-    cardEl.setAttribute('id',`${card.getId()}`)
+    cardEl.setAttribute('id', `${card.getId()}`)
 
     if (card.isLock()) {
-        iconEl.classList.add('card__lock')
+        cardEl.classList.add('card__lock')
     } else {
-        iconEl.classList.add('card__open')
+        cardEl.classList.add('card__open')
     }
 
     cardEl.appendChild(iconEl)
@@ -39,4 +58,4 @@ const createCard = (card) => {
 }
 
 
-export { displayBoard }
+export { displayBoard, updateBoard }

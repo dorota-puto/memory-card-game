@@ -20,7 +20,7 @@ class Card {
     }
 
     toggleCard() {
-        this.lock === true ? this.lock = false : this.lock = true;
+        this.lock = !this.lock ;
     }
 }
 

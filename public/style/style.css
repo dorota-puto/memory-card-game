@@ -87,11 +87,13 @@ h1 {
 
 .card__lock {
     background-color: 4A5459;
-    font-size: 0;
+      font-size: 0;
 }
 
 .card__open {   
+  
     color: rgb(22, 21, 21);
+     /* background-color: 4A5459; */
     font-size: 250%;
 }
 
