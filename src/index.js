@@ -1,6 +1,6 @@
 import Card from './card'
 import Board from './board'
-import { displayBoard, updateBoardUI } from './views'
+import { displayBoard, updateBoardUI, closeUnguessed } from './views'
 
 const icons = ['bug', 'bug', 'cut', 'cut', 'boat', 'boat', 'color-palette', 'color-palette', 'heart', 'heart', 'home', 'home', 'rainy', 'rainy', 'leaf', 'leaf']
 
@@ -14,6 +14,9 @@ displayBoard(board)
 
 document.querySelectorAll('.card').forEach(card => card.addEventListener('click', (e) => {
 
+    if (board.isLock()) {
+        return
+    }
     const cardToToggle = cardSet.find(card => card.getId() == e.currentTarget.id);
     cardToToggle.toggleCard()
 
@@ -22,5 +25,5 @@ document.querySelectorAll('.card').forEach(card => card.addEventListener('click'
 
     board.markGuessedCards()
     updateBoardUI(board)
-
+    closeUnguessed(board)
 })) 

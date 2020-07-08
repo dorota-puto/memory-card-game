@@ -2,12 +2,21 @@
 class Board {
 
     constructor(cardSet) {
+        this.lock = false
         this.cardSet = cardSet
         this.lastOpenedCard = ''
         this.currentCard = ''
         this.status = 'playing'
     }
 
+    isLock() {
+        return this.lock
+    }
+
+    setLock(lock) {
+        this.lock = lock
+    }
+    
     getCardSet() {
         return this.cardSet
     }
@@ -26,9 +35,12 @@ class Board {
     }
 
     markGuessedCards() {
-        if (this.lastOpenedCard !== '' && this.currentCard.getIcon() === this.lastOpenedCard.getIcon()) {
+        if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isLock() && this.currentCard.getIcon() === this.lastOpenedCard.getIcon() && this.currentCard.getId() !== this.lastOpenedCard.getId()) {
             this.currentCard.markAsGuessed()
             this.lastOpenedCard.markAsGuessed()
+        } else if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isGuessed() && !this.currentCard.isGuessed() && !this.lastOpenedCard.isLock()) {
+            this.lastOpenedCard.toggleCard()
+            this.currentCard.toggleCard()
         }
     }
 }

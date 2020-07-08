@@ -27,15 +27,36 @@ const updateBoardUI = (board) => {
         if (cards[i].isGuessed()) {
             cardUI.classList.remove('card__open')
             cardUI.classList.add('card__guessed')
-        } else if (cards[i].isLock()) {
-            cardUI.classList.remove('card__open')
-            cardUI.classList.add('card__lock')
-        } else {
+        } else if (!cards[i].isLock()) {
             cardUI.classList.remove('card__lock')
             cardUI.classList.add('card__open')
         }
     }
 }
+
+const closeUnguessed = (board) => {
+
+    const last = board.getLastOpenedCard()
+    const cur = board.getCurrentCard()
+    if (last !== '') {
+
+        const curCardUI = document.getElementById(`${cur.getId()}`)
+        const lastCardUI = document.getElementById(`${last.getId()}`)
+
+        if (last.isLock() && cur.isLock()) {
+            board.setLock(true)
+            window.setTimeout(function () {
+                lastCardUI.classList.remove('card__open')
+                lastCardUI.classList.add('card__lock')
+                curCardUI.classList.remove('card__open')
+                curCardUI.classList.add('card__lock')
+                board.setLock(false)
+            }, 1000)
+        }
+    }
+}
+
+
 
 const createCard = (card) => {
 
@@ -56,4 +77,4 @@ const createCard = (card) => {
     return cardEl
 }
 
-export { displayBoard, updateBoardUI}
+export { displayBoard, updateBoardUI, closeUnguessed }
