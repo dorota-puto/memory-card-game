@@ -16,7 +16,7 @@ body {
     height: 100vh;
     background-attachment: fixed;
 
-    color:BC8F8F;
+    color: #BC8F8F;
     font-family: 'Inconsolata', monospace;
     font-weight: 300;
     font-size: 20px;
@@ -28,12 +28,11 @@ body {
    flex-direction: column;
    align-items: center;
    justify-content: center;
- }
+}
 
 h1 {
     font-size: 250%;
     padding-bottom: 50px;
-   
 }
 
 /* ----------------------------------------------- */
@@ -64,9 +63,11 @@ h1 {
 .col {
     margin-right: 30px;
 }
+
 .col :first-child{
     margin-top: 0;
 }
+
 .card {
     width: 130px;
     height: 130px;
@@ -77,25 +78,25 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     transition: transform 0.5s;
 }
 
-.card:hover {
+.card--lock:hover {
     transform: scale(1.15);
 }
 
-.card__lock {
+.card--lock {
     background-color: #4A5459;
     font-size: 0;
+    cursor: pointer;
 }
 
-.card__open {   
+.card--open {   
     color: rgb(22, 21, 21);
     font-size: 250%;
 }
 
-.card__guessed {
+.card--guessed {
     background-color: #4E342E;
     color:  #BC8F8F;
     font-size: 250%;

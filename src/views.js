@@ -25,11 +25,11 @@ const updateBoardUI = (board) => {
         const cardUI = document.getElementById(`${cards[i].getId()}`)
 
         if (cards[i].isGuessed()) {
-            cardUI.classList.remove('card__open')
-            cardUI.classList.add('card__guessed')
+            cardUI.classList.remove('card--open')
+            cardUI.classList.add('card--guessed')
         } else if (!cards[i].isLock()) {
-            cardUI.classList.remove('card__lock')
-            cardUI.classList.add('card__open')
+            cardUI.classList.remove('card--lock')
+            cardUI.classList.add('card--open')
         }
     }
 }
@@ -46,10 +46,10 @@ const closeUnguessed = (board) => {
         if (last.isLock() && cur.isLock()) {
             board.setLock(true)
             window.setTimeout(function () {
-                lastCardUI.classList.remove('card__open')
-                lastCardUI.classList.add('card__lock')
-                curCardUI.classList.remove('card__open')
-                curCardUI.classList.add('card__lock')
+                lastCardUI.classList.remove('card--open')
+                lastCardUI.classList.add('card--lock')
+                curCardUI.classList.remove('card--open')
+                curCardUI.classList.add('card--lock')
                 board.setLock(false)
             }, 1000)
         }
@@ -68,9 +68,9 @@ const createCard = (card) => {
     iconEl.setAttribute('name', `${card.getIcon()}`)
 
     if (card.isLock()) {
-        cardEl.classList.add('card__lock')
+        cardEl.classList.add('card--lock')
     } else {
-        cardEl.classList.add('card__open')
+        cardEl.classList.add('card--open')
     }
 
     cardEl.appendChild(iconEl)
