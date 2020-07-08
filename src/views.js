@@ -1,4 +1,19 @@
 
+
+const displayScore = (score, timer) => {
+
+    const counterEl = document.querySelector('.counter')
+    counterEl.innerHTML = `moves: ${score.getCounter()}`
+   
+    timer.reset()
+    timer.start()
+
+    timer.addEventListener('secondsUpdated', function (e) {
+        document.querySelector('#basicUsage').innerHTML = timer.getTimeValues().toString();
+    });
+
+}
+
 const displayBoard = (board) => {
 
     const boardEl = document.querySelector('.board')
@@ -56,8 +71,6 @@ const closeUnguessed = (board) => {
     }
 }
 
-
-
 const createCard = (card) => {
 
     const cardEl = document.createElement('div')
@@ -77,4 +90,4 @@ const createCard = (card) => {
     return cardEl
 }
 
-export { displayBoard, updateBoardUI, closeUnguessed }
+export { displayBoard, updateBoardUI, closeUnguessed, displayScore }

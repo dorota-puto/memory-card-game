@@ -6,7 +6,6 @@ class Board {
         this.cardSet = cardSet
         this.lastOpenedCard = ''
         this.currentCard = ''
-        this.status = 'playing'
     }
 
     isLock() {
@@ -16,7 +15,7 @@ class Board {
     setLock(lock) {
         this.lock = lock
     }
-    
+
     getCardSet() {
         return this.cardSet
     }
