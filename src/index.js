@@ -1,6 +1,6 @@
 import Card from './card'
 import Board from './board'
-import { displayBoard, updateBoard } from './views'
+import { displayBoard, updateBoardUI } from './views'
 
 const icons = ['bug', 'bug', 'cut', 'cut', 'boat', 'boat', 'color-palette', 'color-palette', 'heart', 'heart', 'home', 'home', 'rainy', 'rainy', 'leaf', 'leaf']
 
@@ -10,15 +10,17 @@ for (let i = 0; i < icons.length; i++) {
 }
 
 const board = new Board(cardSet)
-
 displayBoard(board)
 
 document.querySelectorAll('.card').forEach(card => card.addEventListener('click', (e) => {
 
     const cardToToggle = cardSet.find(card => card.getId() == e.currentTarget.id);
-
     cardToToggle.toggleCard()
 
-    updateBoard(board)
+    updateBoardUI(board)
+    board.memorizeCards(cardToToggle)
+
+    board.markGuessedCards()
+    updateBoardUI(board)
 
 })) 

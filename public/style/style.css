@@ -41,7 +41,7 @@ h1 {
 /* ----------------------------------------------- */
 
 .board {
-    background-color: BC8F8F;
+    background-color: #BC8F8F;
     width: 800px;
     height: 800px;
     border-radius: 8px;
@@ -70,7 +70,7 @@ h1 {
 .card {
     width: 130px;
     height: 130px;
-    background-color: 69797E;
+    background-color: #69797E;
     margin-top: 30px;
     border-radius: 4px;
     box-shadow: 0 5px 8px 1px rgba(0, 0, 0, 0.608);
@@ -86,14 +86,18 @@ h1 {
 }
 
 .card__lock {
-    background-color: 4A5459;
-      font-size: 0;
+    background-color: #4A5459;
+    font-size: 0;
 }
 
 .card__open {   
-  
     color: rgb(22, 21, 21);
-     /* background-color: 4A5459; */
+    font-size: 250%;
+}
+
+.card__guessed {
+    background-color: #4E342E;
+    color:  #BC8F8F;
     font-size: 250%;
 }
 

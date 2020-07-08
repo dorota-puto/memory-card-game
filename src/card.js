@@ -4,6 +4,7 @@ class Card {
     constructor(id, icon) {
         this.id = id
         this.lock = true
+        this.guessed = false
         this.icon = icon
     }
 
@@ -17,6 +18,14 @@ class Card {
 
     isLock() {
         return this.lock
+    }
+
+    isGuessed() {
+        return this.guessed
+    }
+
+    markAsGuessed() {
+        this.guessed = true
     }
 
     toggleCard() {
