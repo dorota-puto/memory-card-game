@@ -1,7 +1,7 @@
 
 
 const displayTime = (timer) => {
-   
+
     timer.reset()
     timer.start()
 
@@ -11,10 +11,10 @@ const displayTime = (timer) => {
 
 }
 
-const updateCounter = (score) => {
+const updateCounter = (board) => {
 
     const counterEl = document.querySelector('.counter')
-    counterEl.innerHTML = `moves: ${score.getCounter()}`
+    counterEl.innerHTML = `moves: ${board.getCounter()}`
 }
 
 const displayBoard = (board) => {
@@ -33,6 +33,14 @@ const displayBoard = (board) => {
         boardEl.appendChild(colEl)
         cards.splice(0, 4)
     }
+}
+
+const animateRestartIcon = () => {
+    const restertEl = document.querySelector('.restart--icon')
+    restertEl.classList.add('animate__animated', 'animate__rotateIn')
+    window.setTimeout(function () {
+        restertEl.classList.remove('animate__animated', 'animate__rotateIn')
+    }, 1000)
 }
 
 const updateBoardUI = (board) => {
@@ -62,6 +70,9 @@ const closeUnguessed = (board) => {
         const lastCardUI = document.getElementById(`${last.getId()}`)
 
         if (last.isLock() && cur.isLock()) {
+            
+            board.setCounter(board.getCounter() + 1)
+
             board.setLock(true)
             window.setTimeout(function () {
                 lastCardUI.classList.remove('card--open')
@@ -93,4 +104,4 @@ const createCard = (card) => {
     return cardEl
 }
 
-export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter }
+export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon }

@@ -6,6 +6,16 @@ class Board {
         this.cardSet = cardSet
         this.lastOpenedCard = ''
         this.currentCard = ''
+        this.status = 'playing'
+        this.counter = 0
+    }
+
+    getCounter() {
+        return this.counter
+    }
+
+    setCounter(counter) {
+        this.counter = counter
     }
 
     isLock() {
@@ -37,6 +47,7 @@ class Board {
         if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isLock() && this.currentCard.getIcon() === this.lastOpenedCard.getIcon() && this.currentCard.getId() !== this.lastOpenedCard.getId()) {
             this.currentCard.markAsGuessed()
             this.lastOpenedCard.markAsGuessed()
+            this.counter += 1
         } else if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isGuessed() && !this.currentCard.isGuessed() && !this.lastOpenedCard.isLock()) {
             this.lastOpenedCard.toggleCard()
             this.currentCard.toggleCard()
