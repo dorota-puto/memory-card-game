@@ -1,9 +1,6 @@
 
 
-const displayScore = (score, timer) => {
-
-    const counterEl = document.querySelector('.counter')
-    counterEl.innerHTML = `moves: ${score.getCounter()}`
+const displayTime = (timer) => {
    
     timer.reset()
     timer.start()
@@ -12,6 +9,12 @@ const displayScore = (score, timer) => {
         document.querySelector('#basicUsage').innerHTML = timer.getTimeValues().toString();
     });
 
+}
+
+const updateCounter = (score) => {
+
+    const counterEl = document.querySelector('.counter')
+    counterEl.innerHTML = `moves: ${score.getCounter()}`
 }
 
 const displayBoard = (board) => {
@@ -90,4 +93,4 @@ const createCard = (card) => {
     return cardEl
 }
 
-export { displayBoard, updateBoardUI, closeUnguessed, displayScore }
+export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter }

@@ -1,7 +1,7 @@
 import Score from './score'
 import Card from './card'
 import Board from './board'
-import { displayBoard, updateBoardUI, closeUnguessed, displayScore } from './views'
+import { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter } from './views'
 import Timer from 'easytimer.js';
 
 const timer = new Timer();
@@ -20,16 +20,17 @@ const startGame = () => {
 
     shuffleArray(icons)
 
-   const cardSet = []
+    const cardSet = []
     for (let i = 0; i < icons.length; i++) {
         cardSet.push(new Card(i, icons[i]))
     }
 
-   
-   const score = new Score()
-   const board = new Board(cardSet)
 
-    displayScore(score, timer)
+    const score = new Score()
+    const board = new Board(cardSet)
+
+    displayTime(timer)
+    updateCounter(score)
     displayBoard(board)
 
     document.querySelectorAll('.card').forEach(card => card.addEventListener('click', (e) => {
@@ -39,10 +40,10 @@ const startGame = () => {
         }
         const cardToToggle = cardSet.find(card => card.getId() == e.currentTarget.id);
         cardToToggle.toggleCard()
-    
+
         updateBoardUI(board)
         board.memorizeCards(cardToToggle)
-    
+
         board.markGuessedCards()
         updateBoardUI(board)
         closeUnguessed(board)
@@ -51,9 +52,13 @@ const startGame = () => {
 
 startGame()
 
-
-
 document.querySelector('.restart').addEventListener('click', (e) => {
-    startGame()
-})
 
+    startGame()
+
+    const restertEl = document.querySelector('.restart--icon')
+    restertEl.classList.add('animate__animated', 'animate__rotateIn')
+    window.setTimeout(function () {
+        restertEl.classList.remove('animate__animated', 'animate__rotateIn')
+    }, 1000)
+})
