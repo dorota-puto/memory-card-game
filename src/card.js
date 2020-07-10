@@ -1,4 +1,3 @@
-
 class Card {
 
     constructor(id, icon) {
@@ -29,7 +28,7 @@ class Card {
     }
 
     toggleCard() {
-        this.lock = !this.lock ;
+        this.lock = !this.lock;
     }
 }
 

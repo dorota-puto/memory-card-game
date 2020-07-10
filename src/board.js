@@ -1,3 +1,4 @@
+import Timer from 'easytimer.js';
 
 class Board {
 
@@ -8,6 +9,10 @@ class Board {
         this.currentCard = ''
         this.status = 'playing'
         this.counter = 0
+    }
+
+    getStatus() {
+        return this.status
     }
 
     getCounter() {
@@ -47,11 +52,24 @@ class Board {
         if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isLock() && this.currentCard.getIcon() === this.lastOpenedCard.getIcon() && this.currentCard.getId() !== this.lastOpenedCard.getId()) {
             this.currentCard.markAsGuessed()
             this.lastOpenedCard.markAsGuessed()
+
             this.counter += 1
+            this.updateGameStatus()
+            console.log(this.getStatus())
+
         } else if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isGuessed() && !this.currentCard.isGuessed() && !this.lastOpenedCard.isLock()) {
             this.lastOpenedCard.toggleCard()
             this.currentCard.toggleCard()
         }
+    }
+
+    updateGameStatus() {
+
+        const finished = this.cardSet.every(card => {
+            return card.isGuessed()
+        });
+
+        this.status = finished ? 'finished' : 'playing'
     }
 }
 

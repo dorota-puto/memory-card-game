@@ -1,11 +1,9 @@
-
-
 const displayTime = (timer) => {
 
     timer.reset()
     timer.start()
 
-    timer.addEventListener('secondsUpdated', function (e) {
+    timer.addEventListener('secondsUpdated', function(e) {
         document.querySelector('#basicUsage').innerHTML = timer.getTimeValues().toString();
     });
 
@@ -15,6 +13,19 @@ const updateCounter = (board) => {
 
     const counterEl = document.querySelector('.counter')
     counterEl.innerHTML = `moves: ${board.getCounter()}`
+}
+
+const checkIfFinished = (board, timer) => {
+
+    const h = timer.getTimeValues().hours.toString()
+    const m = timer.getTimeValues().minutes.toString()
+    const s = timer.getTimeValues().seconds.toString()
+
+    if (board.getStatus() === 'finished') {
+        const messageEl = document.querySelector('.modal-content--message')
+        messageEl.innerHTML = `You have won in ${h} hours ${m} minutes ${s} seconds using ${board.getCounter()} moves`
+        document.querySelector('.modal').classList.add('is-active')
+    }
 }
 
 const displayBoard = (board) => {
@@ -38,7 +49,7 @@ const displayBoard = (board) => {
 const animateRestartIcon = () => {
     const restertEl = document.querySelector('.restart--icon')
     restertEl.classList.add('animate__animated', 'animate__rotateIn')
-    window.setTimeout(function () {
+    window.setTimeout(function() {
         restertEl.classList.remove('animate__animated', 'animate__rotateIn')
     }, 1000)
 }
@@ -70,11 +81,11 @@ const closeUnguessed = (board) => {
         const lastCardUI = document.getElementById(`${last.getId()}`)
 
         if (last.isLock() && cur.isLock()) {
-            
+
             board.setCounter(board.getCounter() + 1)
 
             board.setLock(true)
-            window.setTimeout(function () {
+            window.setTimeout(function() {
                 lastCardUI.classList.remove('card--open')
                 lastCardUI.classList.add('card--lock')
                 curCardUI.classList.remove('card--open')
@@ -104,4 +115,4 @@ const createCard = (card) => {
     return cardEl
 }
 
-export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon }
+export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon, checkIfFinished }

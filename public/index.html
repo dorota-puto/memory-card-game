@@ -1,14 +1,17 @@
-<html>
+<html class="is-clipped">
 
 <head>
+    <meta charset="utf-8">
     <title>Memory Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 </head>
 
 <body>
-    <h1>Memory Game</h1>
+    <h2>Memory Game</h2>
     <div class="score-panel">
         <div class="timer">
             <div id="basicUsage">00:00:00</div>
@@ -19,6 +22,16 @@
         </div>
     </div>
     <div class="board"></div>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <h1>Congratulations!</h1>
+            <p class="modal-content--message"></p>
+            <button class="btn-close">Play again</button>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
     <script src="/scripts/bundle.js"></script>
 </body>

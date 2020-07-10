@@ -1,7 +1,6 @@
-
 import Card from './card'
 import Board from './board'
-import { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon } from './views'
+import { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon, checkIfFinished } from './views'
 import Timer from 'easytimer.js';
 
 const timer = new Timer();
@@ -18,7 +17,7 @@ const startGame = () => {
         }
     }
 
-    shuffleArray(icons)
+    // shuffleArray(icons)
 
     const cardSet = []
     for (let i = 0; i < icons.length; i++) {
@@ -44,16 +43,22 @@ const startGame = () => {
 
         board.markGuessedCards()
         updateBoardUI(board)
-        
+
         closeUnguessed(board)
         updateCounter(board)
+        checkIfFinished(board, timer)
+
     }))
 }
 
 startGame()
 
 document.querySelector('.restart').addEventListener('click', (e) => {
-
     startGame()
     animateRestartIcon()
+})
+
+document.querySelector('.btn-close').addEventListener('click', (e) => {
+    startGame()
+    document.querySelector('.modal').classList.remove('is-active')
 })
