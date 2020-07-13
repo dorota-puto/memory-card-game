@@ -1,7 +1,6 @@
 import Card from './Card';
 
-// todo: remove duplicates
-const allIcons = ['bug', 'bug', 'cut', 'cut', 'boat', 'boat', 'color-palette', 'color-palette', 'heart', 'heart', 'home', 'home', 'rainy', 'rainy', 'leaf', 'leaf'];
+const allIcons = ['bug', 'cut', 'boat', 'color-palette', 'heart', 'home', 'rainy', 'leaf'];
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -11,12 +10,11 @@ function shuffleArray(array) {
         array[j] = temp;
     }
 }
-
 class CardSet {
 
     constructor() {
         this.cards = [];
-        const icons = [...allIcons];
+        const icons = [...allIcons, ...allIcons];
         shuffleArray(icons);
         for (let i = 0; i < icons.length; i++) {
             this.cards.push(new Card(i, icons[i]));
