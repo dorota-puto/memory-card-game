@@ -1,15 +1,17 @@
+import moment from 'moment';
+
 const displayTime = (timer) => {
 
     timer.reset();
     timer.start();
 
-    timer.addEventListener('secondsUpdated', function() {
+    timer.addEventListener('secondsUpdated', function () {
         document.querySelector('#basicUsage').innerHTML = timer.getTimeValues().toString();
     });
 
 };
 
-const updateCounter = (board) => {
+const updateCounterUI = (board) => {
 
     const counterEl = document.querySelector('.counter');
     counterEl.innerHTML = `moves: ${board.getCounter()}`;
@@ -17,13 +19,29 @@ const updateCounter = (board) => {
 
 const checkIfFinished = (board, timer) => {
 
-    const h = timer.getTimeValues().hours.toString();
     const m = timer.getTimeValues().minutes.toString();
     const s = timer.getTimeValues().seconds.toString();
 
     if (board.getStatus() === 'finished') {
+
+        const moves = board.getCounter();
+        board.createScore(moves, timer.getTimeValues().toString(), moment().valueOf());
+        board.saveScores();
+
         const messageEl = document.querySelector('.modal-content--message');
-        messageEl.innerHTML = `You have won in ${h} hours ${m} minutes ${s} seconds using ${board.getCounter()} moves`;
+        messageEl.innerHTML = `You have won in ${m} minutes ${s} seconds using ${moves} moves`;
+
+        const scores = [...board.scores];
+        const scoresEl = document.querySelector('.modal-content--scores');
+        scoresEl.innerHTML = '';
+
+        for (let i = 0; i < scores.length; i++) {
+            const pEl = document.createElement('p');
+            pEl.innerHTML = `${i + 1}. Moves: ${scores[i].moves} Time: ${scores[i].time} At: ${moment(scores[i].timeStamp).fromNow()}`;
+            scoresEl.appendChild(pEl);
+        }
+
+
         document.querySelector('.modal').classList.add('is-active');
     }
 };
@@ -49,7 +67,7 @@ const displayBoard = (board) => {
 const animateRestartIcon = () => {
     const restertEl = document.querySelector('.restart--icon');
     restertEl.classList.add('animate__animated', 'animate__rotateIn');
-    window.setTimeout(function() {
+    window.setTimeout(function () {
         restertEl.classList.remove('animate__animated', 'animate__rotateIn');
     }, 1000);
 };
@@ -85,7 +103,7 @@ const closeUnguessed = (board) => {
             board.setCounter(board.getCounter() + 1);
 
             board.setLock(true);
-            window.setTimeout(function() {
+            window.setTimeout(function () {
                 lastCardUI.classList.remove('card--open');
                 lastCardUI.classList.add('card--lock');
                 curCardUI.classList.remove('card--open');
@@ -115,4 +133,4 @@ const createCard = (card) => {
     return cardEl;
 };
 
-export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounter, animateRestartIcon, checkIfFinished };
+export { displayBoard, updateBoardUI, closeUnguessed, displayTime, updateCounterUI as updateCounter, animateRestartIcon, checkIfFinished };

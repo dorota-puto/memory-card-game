@@ -35,6 +35,11 @@
     h1 {
         font-size: 300%;
     }
+
+    h3 {
+        font-size: 150%;
+        margin-top: 30px;
+    }
     /* ----------------------------------------------- */
     /* SCORE PANEL */
     /* ----------------------------------------------- */
@@ -161,7 +166,7 @@
         text-decoration: none;
         border-radius: 10px;
         padding: 5px;
-        margin-top: 15px;
+        margin: 15px 0;
         cursor: pointer;
         background-color: #69797E;
         border: 1px solid #69797E;

@@ -12,7 +12,7 @@ const startGame = () => {
     displayTime(timer);
     updateCounter(board);
     displayBoard(board);
-
+   
     document.querySelectorAll('.card').forEach(card => card.addEventListener('click', (e) => {
 
         if (board.isLock()) {

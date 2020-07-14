@@ -7,6 +7,7 @@ class Board {
         this.currentCard = '';
         this.status = 'playing';
         this.counter = 0;
+        this.scores = this.loadScores();
     }
 
     getStatus() {
@@ -57,7 +58,6 @@ class Board {
 
             this.counter += 1;
             this.updateGameStatus();
-            console.log(this.getStatus());
 
         } else if (this.lastOpenedCard !== '' && !this.lastOpenedCard.isGuessed() && !this.currentCard.isGuessed() && !this.lastOpenedCard.isLock()) {
             this.lastOpenedCard.toggleCard();
@@ -67,6 +67,43 @@ class Board {
 
     updateGameStatus() {
         this.status = this.cardSet.allGuessed() ? 'finished' : 'playing';
+    }
+
+    loadScores() {
+        const scoresJSON = localStorage.getItem('scores');
+
+        try {
+            return scoresJSON ? JSON.parse(scoresJSON) : [];
+        } catch (e) {
+            return [];
+        }
+    }
+
+    rankScores() {
+        return this.scores.sort(function (cur, pre) {
+            if (cur.moves === pre.moves) {
+                return cur.time > pre.time ? 1 : -1;
+            }
+            return cur.moves > pre.moves ? 1 : -1;
+        });
+    }
+
+    saveScores() {
+        this.rankScores();
+
+        if (this.scores.length > 5) {
+            this.scores.pop();
+        }
+
+        localStorage.setItem('scores', JSON.stringify(this.scores));
+    }
+
+    createScore(moves, time, timeStamp) {
+        this.scores.push({
+            moves: moves,
+            time: time,
+            timeStamp: timeStamp
+        });
     }
 }
 
