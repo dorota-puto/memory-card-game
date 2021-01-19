@@ -1,13 +1,13 @@
 {
-  "name": "boilerplate",
+  "name": "memory-game",
   "version": "1.0.0",
   "description": "",
+  "author": "Dorota Puto",
   "main": "input.js",
   "scripts": {
     "dev-server": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack -p --mode production"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",

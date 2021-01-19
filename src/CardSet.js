@@ -1,6 +1,6 @@
 import Card from './Card';
 
-const allIcons = ['bug', 'cut', 'boat', 'color-palette', 'heart', 'home', 'rainy', 'leaf'];
+const allIcons = ['bug', 'cut', 'boat', 'snow', 'heart', 'home', 'rainy', 'leaf'];
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
