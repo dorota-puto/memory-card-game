@@ -6,6 +6,10 @@
 
 Game challenging players’ memory skills by encouraging them to match all pairs of covered cards in the smallest possible amount of time and moves.
 
+## Demo
+
+https://memorycards-puto.netlify.app/
+
 ## Gained sills
 * Gamiliarized myself with JavaScript ES6 features.
 * Learned how Webpack module bundler works.
